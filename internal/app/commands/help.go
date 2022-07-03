@@ -10,6 +10,3 @@ func (c *Commander) Help(inputMessage *tgbotapi.Message) {
 	c.bot.Send(msg)
 }
 
-func init() {
-	registeredCommander["help"] = (*Commander).Help
-}
