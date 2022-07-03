@@ -8,7 +8,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// const token = "5532736288:AAHxIN3jJy_rcP6xjdaV4easZrfEhw-5Ke8"
 
 func main() {
 
