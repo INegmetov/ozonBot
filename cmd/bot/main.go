@@ -11,11 +11,8 @@ import (
 )
 
 func main() {
-
 	godotenv.Load()
-
 	token := os.Getenv("TOKEN")
-
 	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
@@ -25,20 +22,15 @@ func main() {
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	u := tgbotapi.UpdateConfig{
-		Timeout: 60,
-	}
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = 60
 
 	updates := bot.GetUpdatesChan(u)
-	if err != nil {
-		log.Panic(err)
-	}
 
 	productService := product.NewService()
-
 	commander := commands.NewCommander(bot, productService)
 
 	for update := range updates {
-		commander.HendleUpdate(update)
+		commander.HandleUpdate(update)
 	}
 }
